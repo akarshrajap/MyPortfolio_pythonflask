@@ -1,0 +1,278 @@
+/* --- RESET & BASIC STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* A clean modern font, replace with exact if known */
+    background-color: #efe4c8;
+    color: #131010;
+    overflow-x: hidden;
+}
+
+/* --- MAIN LAYOUT (Matches Image Structure) --- */
+.main-container {
+    display: flex;
+    height: 100vh; /* Viewport height for the main section */
+    width: 100vw;
+}
+
+/* --- 1. SIDEBAR NAVIGATION --- */
+.sidebar {
+    width: 25%; /* Sidebar takes 25% width */
+    height: 100%;
+    background-color: #f3ead7;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes items to top/bottom */
+    padding: 60px 40px;
+}
+
+/* Logo Area */
+.logo-area {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #000;
+}
+
+.logo-underline {
+    width: 60px;
+    height: 3px;
+    background-color: #000;
+    margin: 8px auto 0;
+}
+
+/* Nav Links */
+.nav-links {
+    list-style: none;
+    text-align: center;
+    flex-grow: 1; /* Occupy available space */
+}
+
+.nav-links li {
+    margin-bottom: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    display: inline-block;
+    padding: 8px 20px;
+}
+
+.nav-links li.active a {
+    color: #000;
+    background-color: #FFD700; /* Yellow accent color from image */
+}
+
+.nav-links a:hover {
+    color: #000;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    text-align: center;
+}
+
+.social-icons {
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    color: #555;
+    margin: 0 10px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #FFD700;
+}
+
+.copyright {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* --- 2. MAIN CONTENT AREA (Hero Section) --- */
+.content-wrapper {
+    width: 75%; /* Main content takes 75% width */
+    height: 100%;
+    background-color: #efe4c8;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    padding: 0 50px;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* Space between portrait and text */
+}
+
+/* Portrait Styling (The complex border/yellow bar setup) */
+.portrait-box {
+    position: relative;
+    padding: 20px; /* Creating the outer white space */
+    border: 3px solid #000; /* The main black frame */
+    background-color: #fff;
+}
+
+.yellow-bar-left, .yellow-bar-right {
+    position: absolute;
+    width: 20px;
+    height: 80%;
+    background-color: #FFD700;
+    top: 10%;
+}
+
+.yellow-bar-left {
+    left: -10px; /* Offset the yellow bar to overlap the frame */
+}
+
+.yellow-bar-right {
+    right: -10px; /* Offset the yellow bar */
+}
+
+.portrait-image-wrapper {
+    width: 300px; /* Set specific width for portrait area */
+    height: 380px; /* Set specific height */
+    overflow: hidden; /* Crop image to fit */
+    position: relative;
+    z-index: 1; /* Keep image above yellow bars */
+}
+
+.portrait-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, maintain aspect ratio */
+}
+
+/* Text Content Area */
+.text-box {
+    max-width: 400px;
+}
+
+.main-title {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 3px;
+    background-color: #000;
+    margin-bottom: 30px;
+}
+
+.bio-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Elegant Signature font - replace with a cursive Google Font if needed */
+.signature {
+    font-family: 'Great Vibes', cursive; /* Optional, requires loading the font */
+    font-size: 32px;
+    color: #000;
+    font-style: italic;
+}
+
+/* --- CONTACT / FEEDBACK SECTION STYLES --- */
+.feedback-section {
+    background-color: #efe4c8;
+    padding: 80px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.feedback-section h3 {
+    font-size: 28px;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #FFD700;
+}
+
+.submit-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 4px;
+    align-self: flex-start; /* Button aligned left */
+}
+
+.submit-btn:hover {
+    background-color: #FFD700;
+    color: #000;
+}
+
+/* Flash Alert Styles */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    text-align: left;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

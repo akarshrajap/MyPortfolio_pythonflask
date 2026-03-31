@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.name }} | {{ data.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <nav class="sidebar">
+            <div class="logo-area">
+                <h1 class="logo-text">About</h1>
+                <div class="logo-underline"></div>
+            </div>
+
+            <ul class="nav-links">
+                <li class="active"><a href="#home">HOME</a></li>
+                <li><a href="#biography">BIOGRAPHY</a></li>
+                <li><a href="#portfolio">PORTFOLIO</a></li>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#customers">CUSTOMERS</a></li>
+                <li><a href="#projects">PROJECTS</a></li>
+                <li><a href="#contact">CONTACT (FEEDBACK)</a></li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/akarsh-raj-a-p-09b6a4207"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/akarshpurushotham?igsh=MXB2ZzlpMHZ2a3owbQ=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/akarshrajap"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="copyright">
+                    © {{ data.year }} Akarsh Raj A P<br>
+                    Created by Akarsh Raj A P
+                </p>
+            </div>
+        </nav>
+
+        <main class="content-wrapper" id="home">
+            <div class="hero-container">
+                
+                <div class="portrait-box">
+                    <div class="yellow-bar-left"></div>
+                    <div class="portrait-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/portrait.jpg') }}" alt="{{ data.name }}">
+                    </div>
+                    <div class="yellow-bar-right"></div>
+                </div>
+
+                <div class="text-box">
+                    <h2 class="main-title">{{ data.title }}</h2>
+                    <div class="title-underline"></div>
+                    <p class="bio-text">{{ data.bio }}</p>
+                    <p class="signature">{{ data.name }}</p>
+                </div>
+
+            </div>
+        </main>
+
+    </div> <section id="contact" class="feedback-section">
+        <div class="container">
+            <h3>Leave Feedback</h3>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form action="/submit_contact" method="POST" class="feedback-form">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="5" placeholder="Your Feedback/Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SEND MESSAGE</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
