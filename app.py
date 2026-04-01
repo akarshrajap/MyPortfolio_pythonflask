@@ -3,8 +3,11 @@ import os
 from flask import Flask, render_template, request, g, redirect, flash, url_for
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'supersecretkeyforflashingmessages') # Required for flash messages
-DATABASE = os.environ.get('DATABASE_PATH', 'database.db')
+app.secret_key = os.environ.get('SECRET_KEY', 'supersecretkeyforflashingmessages')  # Required for flash messages
+
+# Render free tier does not provide a persistent disk, so use ephemeral storage there.
+default_db_path = '/tmp/database.db' if os.environ.get('RENDER') else 'database.db'
+DATABASE = os.environ.get('DATABASE_PATH', default_db_path)
 
 # --- Database Helper Functions ---
 def get_db():
@@ -21,6 +24,11 @@ def close_connection(exception):
         db.close()
 
 def init_db():
+    if DATABASE != ':memory:':
+        db_dir = os.path.dirname(DATABASE)
+        if db_dir:
+            os.makedirs(db_dir, exist_ok=True)
+
     with app.app_context():
         db = get_db()
         db.cursor().execute(
